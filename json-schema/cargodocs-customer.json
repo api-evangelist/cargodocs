@@ -1,0 +1,21 @@
+{
+  "$id": "https://raw.githubusercontent.com/api-evangelist/cargodocs/refs/heads/main/json-schema/cargodocs-customer.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CargoDocs Customer",
+  "description": "A customer in the CargoDocs platform representing an organization that uses CargoDocs services for managing electronic trade documents.",
+  "type": "object",
+  "properties": {
+    "customerId": {
+      "type": "string",
+      "description": "The unique identifier for the customer."
+    },
+    "customerName": {
+      "type": "string",
+      "description": "The name of the customer."
+    }
+  },
+  "required": [
+    "customerId",
+    "customerName"
+  ]
+}

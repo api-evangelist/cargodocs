@@ -1,0 +1,31 @@
+{
+  "$id": "https://raw.githubusercontent.com/api-evangelist/cargodocs/refs/heads/main/json-schema/cargodocs-document.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CargoDocs Document",
+  "description": "A trade or shipping document managed within the CargoDocs platform, such as a bill of lading, certificate of origin, or invoice.",
+  "type": "object",
+  "properties": {
+    "documentId": {
+      "type": "string",
+      "description": "The unique identifier for the document."
+    },
+    "documentType": {
+      "type": "string",
+      "description": "The type of document (e.g., eBoL, SWB, certificate, invoice)."
+    },
+    "status": {
+      "type": "string",
+      "description": "The current status of the document."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The timestamp when the document was created."
+    }
+  },
+  "required": [
+    "documentId",
+    "documentType",
+    "status"
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "cargodocs": "https://api.cargodocs.com/v3/",
+    "BillOfLading": {
+      "@id": "cargodocs:BillOfLading",
+      "@context": {
+        "documentId": "cargodocs:documentId",
+        "documentType": "cargodocs:documentType",
+        "transactionId": "cargodocs:transactionId",
+        "status": "cargodocs:status",
+        "draftId": "cargodocs:draftId",
+        "shipperDetails": "cargodocs:shipperDetails",
+        "consigneeDetails": "cargodocs:consigneeDetails",
+        "cargoDetails": "cargodocs:cargoDetails",
+        "issuedAt": {
+          "@id": "cargodocs:issuedAt",
+          "@type": "DateTime"
+        },
+        "createdAt": {
+          "@id": "cargodocs:createdAt",
+          "@type": "DateTime"
+        }
+      }
+    },
+    "Transaction": {
+      "@id": "cargodocs:Transaction",
+      "@context": {
+        "transactionId": "cargodocs:transactionId",
+        "status": "cargodocs:status",
+        "createdAt": {
+          "@id": "cargodocs:createdAt",
+          "@type": "DateTime"
+        },
+        "documentCount": {
+          "@id": "cargodocs:documentCount",
+          "@type": "Integer"
+        }
+      }
+    },
+    "Document": {
+      "@id": "cargodocs:Document",
+      "@context": {
+        "documentId": "cargodocs:documentId",
+        "documentType": "cargodocs:documentType",
+        "status": "cargodocs:status",
+        "createdAt": {
+          "@id": "cargodocs:createdAt",
+          "@type": "DateTime"
+        }
+      }
+    },
+    "Counterparty": {
+      "@id": "cargodocs:Counterparty",
+      "@context": {
+        "counterpartyId": "cargodocs:counterpartyId",
+        "counterpartyName": "cargodocs:counterpartyName"
+      }
+    },
+    "Customer": {
+      "@id": "cargodocs:Customer",
+      "@context": {
+        "customerId": "cargodocs:customerId",
+        "customerName": "cargodocs:customerName"
+      }
+    }
+  }
+}

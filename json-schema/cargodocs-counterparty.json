@@ -1,0 +1,21 @@
+{
+  "$id": "https://raw.githubusercontent.com/api-evangelist/cargodocs/refs/heads/main/json-schema/cargodocs-counterparty.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CargoDocs Counterparty",
+  "description": "A counterparty in the CargoDocs platform representing an organization or entity involved in a trade or shipping transaction.",
+  "type": "object",
+  "properties": {
+    "counterpartyId": {
+      "type": "string",
+      "description": "The unique identifier for the counterparty."
+    },
+    "counterpartyName": {
+      "type": "string",
+      "description": "The name of the counterparty."
+    }
+  },
+  "required": [
+    "counterpartyId",
+    "counterpartyName"
+  ]
+}

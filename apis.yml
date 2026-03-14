@@ -16,6 +16,10 @@ apis:
         type: GettingStarted
       - url: openapi/cargodocs-partner-openapi.yml
         type: OpenAPI
+      - url: json-schema/cargodocs-customer.json
+        type: JSONSchema
+      - url: json-schema/cargodocs-counterparty.json
+        type: JSONSchema
     description: >-
       The CargoDocs Partner API enables partners and platform providers to embed
       CargoDocs DocEx functionality into their trade or trade finance platforms,
@@ -37,6 +41,8 @@ apis:
         type: GettingStarted
       - url: openapi/cargodocs-issuer-openapi.yml
         type: OpenAPI
+      - url: json-schema/cargodocs-bill-of-lading.json
+        type: JSONSchema
     description: >-
       The CargoDocs Issuer API enables container lines or NVOCCs to manage
       relevant tasks relating to electronic straight and negotiable bills of
@@ -56,6 +62,10 @@ apis:
         type: Documentation
       - url: openapi/cargodocs-customer-openapi.yml
         type: OpenAPI
+      - url: json-schema/cargodocs-transaction.json
+        type: JSONSchema
+      - url: json-schema/cargodocs-document.json
+        type: JSONSchema
     description: >-
       The CargoDocs Customer Data/Docs API enables exporters to draft trade and
       shipping documents, including tanker, bulker, or barge bills of lading
@@ -69,6 +79,11 @@ tags:
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
+common:
+  - url: json-ld/cargodocs-context.jsonld
+    name: CargoDocs JSON-LD Context
+    type: JSONLDContext
+    description: JSON-LD context document for CargoDocs domain entities.
 created: '2025-01-08'
 modified: '2026-03-14'
 position: Consumer

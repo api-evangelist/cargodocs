@@ -1,0 +1,30 @@
+{
+  "$id": "https://raw.githubusercontent.com/api-evangelist/cargodocs/refs/heads/main/json-schema/cargodocs-transaction.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CargoDocs Transaction",
+  "description": "A transaction in the CargoDocs platform representing a trade or shipping workflow that groups related electronic documents together.",
+  "type": "object",
+  "properties": {
+    "transactionId": {
+      "type": "string",
+      "description": "The unique identifier for the transaction."
+    },
+    "status": {
+      "type": "string",
+      "description": "The current status of the transaction."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The timestamp when the transaction was created."
+    },
+    "documentCount": {
+      "type": "integer",
+      "description": "The number of documents associated with this transaction."
+    }
+  },
+  "required": [
+    "transactionId",
+    "status"
+  ]
+}
