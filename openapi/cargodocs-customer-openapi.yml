@@ -1,0 +1,251 @@
+openapi: 3.1.0
+info:
+  title: CargoDocs Customer Data/Docs API
+  description: >-
+    The CargoDocs Customer Data/Docs API enables exporters to draft trade and
+    shipping documents, including tanker, bulker, or barge bills of lading from
+    data imported from an ERP system, CTRM, TMS, WMS, etc. It also enables any
+    party using CargoDocs to download copy docs and data to automate various
+    back-office steps.
+  version: 3.0.0
+  contact:
+    name: ICE Digital Trade (essDOCS)
+    url: https://www.essdocs.com
+  license:
+    name: Proprietary
+    url: https://www.essdocs.com
+servers:
+  - url: https://api-test.cargodocs.com/v3
+    description: Sandbox / Test Environment
+  - url: https://api.uat.cargodocs.com/v3
+    description: UAT Environment
+  - url: https://api.cargodocs.com/v3
+    description: Production Environment
+security:
+  - bearerAuth: []
+paths:
+  /common/import:
+    post:
+      operationId: importShipmentData
+      summary: Import Shipment Data
+      description: >-
+        Imports shipment data to create trade and shipping documents such as
+        tanker, bulker, or barge bills of lading. Data can be imported from ERP
+        systems, CTRM, TMS, WMS, and other sources.
+      tags:
+        - Import
+      parameters:
+        - name: importRef
+          in: query
+          required: true
+          description: The import reference identifier (e.g., LNGBL559)
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportRequest'
+      responses:
+        '200':
+          description: Shipment data imported successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /customer/transactions:
+    get:
+      operationId: findTransactions
+      summary: Find Transactions
+      description: >-
+        Finds and retrieves transactions based on search criteria and filters.
+      tags:
+        - Transactions
+      parameters:
+        - name: status
+          in: query
+          required: false
+          description: Filter by transaction status
+          schema:
+            type: string
+        - name: page
+          in: query
+          required: false
+          description: Page number for pagination
+          schema:
+            type: integer
+            default: 1
+        - name: pageSize
+          in: query
+          required: false
+          description: Number of items per page
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: Successful response with list of transactions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionList'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /customer/transactions/{transactionId}/documents:
+    get:
+      operationId: findDocuments
+      summary: Find Transaction Documents
+      description: >-
+        Retrieves documents associated with a specific transaction.
+      tags:
+        - Documents
+      parameters:
+        - name: transactionId
+          in: path
+          required: true
+          description: The unique identifier for the transaction
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response with list of documents
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Document'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Transaction not found
+  /customer/documents/{documentId}/pdf:
+    get:
+      operationId: downloadDocumentPdf
+      summary: Download Document PDF
+      description: >-
+        Downloads a PDF copy of a specific document within a transaction.
+      tags:
+        - Documents
+      parameters:
+        - name: documentId
+          in: path
+          required: true
+          description: The unique identifier for the document
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response with PDF document
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Document not found
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    ImportRequest:
+      type: object
+      properties:
+        shipmentType:
+          type: string
+          description: Type of shipment (e.g., tanker, bulker, barge)
+          enum:
+            - tanker
+            - bulker
+            - barge
+        shipmentData:
+          type: object
+          description: The shipment data payload to import
+        documentType:
+          type: string
+          description: Type of document to create from the import
+    ImportResponse:
+      type: object
+      properties:
+        importId:
+          type: string
+          description: The unique identifier for the import operation
+        status:
+          type: string
+          description: Status of the import
+        transactionId:
+          type: string
+          description: The transaction ID created from the import
+    TransactionList:
+      type: object
+      properties:
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
+        totalCount:
+          type: integer
+          description: Total number of matching transactions
+        page:
+          type: integer
+          description: Current page number
+        pageSize:
+          type: integer
+          description: Number of items per page
+    Transaction:
+      type: object
+      properties:
+        transactionId:
+          type: string
+          description: The unique identifier for the transaction
+        status:
+          type: string
+          description: Current status of the transaction
+        createdAt:
+          type: string
+          format: date-time
+          description: When the transaction was created
+        documentCount:
+          type: integer
+          description: Number of documents in this transaction
+    Document:
+      type: object
+      properties:
+        documentId:
+          type: string
+          description: The unique identifier for the document
+        documentType:
+          type: string
+          description: Type of document
+        status:
+          type: string
+          description: Current status of the document
+        createdAt:
+          type: string
+          format: date-time
+          description: When the document was created
+tags:
+  - name: Import
+    description: Endpoints for importing shipment data to create documents
+  - name: Transactions
+    description: Endpoints for finding and managing transactions
+  - name: Documents
+    description: Endpoints for retrieving and downloading documents

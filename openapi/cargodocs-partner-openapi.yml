@@ -1,0 +1,167 @@
+openapi: 3.1.0
+info:
+  title: CargoDocs Partner API
+  description: >-
+    The CargoDocs Partner API enables partners and platform providers to embed
+    CargoDocs DocEx functionality into their trade or trade finance platforms,
+    handling original electronic bills of lading (eBoL) and warehouse warrants
+    (eWW). The Partner Exchange API retrieves customer and partner data to
+    perform specific actions, with endpoints to retrieve data based on
+    conditions and filters and Action endpoints to action over transactions.
+  version: 3.0.0
+  contact:
+    name: ICE Digital Trade (essDOCS)
+    url: https://www.essdocs.com
+  license:
+    name: Proprietary
+    url: https://www.essdocs.com
+servers:
+  - url: https://api-test.cargodocs.com/v3
+    description: Sandbox / Test Environment
+  - url: https://api.uat.cargodocs.com/v3
+    description: UAT Environment
+  - url: https://api.cargodocs.com/v3
+    description: Production Environment
+security:
+  - bearerAuth: []
+paths:
+  /exchange/customers:
+    get:
+      operationId: getPartnerCustomerIds
+      summary: Get Partner Customer Ids
+      description: >-
+        Allows a Partner to collect the Customer IDs which they have permission
+        to access in CargoDocs Exchange.
+      tags:
+        - Exchange
+      responses:
+        '200':
+          description: Successful response with list of customer IDs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Customer'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /exchange/employees:
+    get:
+      operationId: getPartnerCustomerEmployeeIds
+      summary: Get Partner Customer Employee Ids
+      description: >-
+        Allows the Partner to collect the Employee IDs for parties to action a
+        set of electronic documents and for auditing purposes.
+      tags:
+        - Exchange
+      responses:
+        '200':
+          description: Successful response with list of employee IDs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Employee'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /common/counterparties:
+    get:
+      operationId: getCounterparties
+      summary: Get Counterparties
+      description: >-
+        Allows a Partner to retrieve all available counterparties.
+      tags:
+        - Common
+      responses:
+        '200':
+          description: Successful response with list of counterparties
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Counterparty'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /exchange/documents/{documentId}/pdf:
+    get:
+      operationId: getSinglePdf
+      summary: Get Single PDF
+      description: >-
+        Allows a customer to download a copy of documents within a set. If the
+        customer holds the original eBoL, the partner can download a version of
+        the BoL watermarked Original in CargoDocs.
+      tags:
+        - Documents
+      parameters:
+        - name: documentId
+          in: path
+          required: true
+          description: The unique identifier for the document
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response with PDF document
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Document not found
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Customer:
+      type: object
+      properties:
+        customerId:
+          type: string
+          description: The unique identifier for the customer
+        customerName:
+          type: string
+          description: The name of the customer
+    Employee:
+      type: object
+      properties:
+        employeeId:
+          type: string
+          description: The unique identifier for the employee
+        employeeName:
+          type: string
+          description: The name of the employee
+        customerId:
+          type: string
+          description: The customer ID associated with this employee
+    Counterparty:
+      type: object
+      properties:
+        counterpartyId:
+          type: string
+          description: The unique identifier for the counterparty
+        counterpartyName:
+          type: string
+          description: The name of the counterparty
+tags:
+  - name: Exchange
+    description: Partner Exchange API endpoints for customer and employee data
+  - name: Common
+    description: Common API endpoints shared across partner operations
+  - name: Documents
+    description: Document retrieval and management endpoints

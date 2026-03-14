@@ -1,0 +1,242 @@
+openapi: 3.1.0
+info:
+  title: CargoDocs Issuer API
+  description: >-
+    The CargoDocs Issuer API enables container lines or NVOCCs to manage
+    relevant tasks relating to electronic straight and negotiable bills of
+    lading at Origin or Destination from within their TMS. The API supports
+    sharing draft eBoL/SWB for shipper approval, signing and issuing original
+    eBoL/SWB, receiving surrendered original electronic bills of lading, and
+    managing Amendment Requests or Splits of an eBoL.
+  version: 3.0.0
+  contact:
+    name: ICE Digital Trade (essDOCS)
+    url: https://www.essdocs.com
+  license:
+    name: Proprietary
+    url: https://www.essdocs.com
+servers:
+  - url: https://api-test.cargodocs.com/v3
+    description: Sandbox / Test Environment
+  - url: https://api.uat.cargodocs.com/v3
+    description: UAT Environment
+  - url: https://api.cargodocs.com/v3
+    description: Production Environment
+security:
+  - bearerAuth: []
+paths:
+  /issuer/draft:
+    post:
+      operationId: createDraft
+      summary: Create Draft eBoL
+      description: >-
+        Shares a draft electronic Bill of Lading (eBoL) or Sea Waybill (SWB)
+        for approval by the shipper before signing and issuing.
+      tags:
+        - Issuance
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DraftRequest'
+      responses:
+        '200':
+          description: Draft created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DraftResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /issuer/issue:
+    post:
+      operationId: issueDocument
+      summary: Issue eBoL
+      description: >-
+        Signs and issues the original electronic Bill of Lading (eBoL) or
+        Sea Waybill (SWB) after the draft has been approved.
+      tags:
+        - Issuance
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IssueRequest'
+      responses:
+        '200':
+          description: Document issued successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IssueResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /issuer/re-issue:
+    post:
+      operationId: reIssue
+      summary: Re-Issue eBoL
+      description: >-
+        Allows the issuer to re-issue an electronic Bill of Lading, for
+        example after an amendment request or when managing splits of an eBoL.
+      tags:
+        - Issuance
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReIssueRequest'
+      responses:
+        '200':
+          description: Document re-issued successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReIssueResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /issuer/surrender:
+    post:
+      operationId: receiveSurrender
+      summary: Receive Surrendered eBoL
+      description: >-
+        Receives the surrendered original electronic Bill of Lading from the
+        holder, typically for cargo release at destination.
+      tags:
+        - Surrender
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SurrenderRequest'
+      responses:
+        '200':
+          description: Surrender received successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SurrenderResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    DraftRequest:
+      type: object
+      properties:
+        transactionId:
+          type: string
+          description: The unique identifier for the transaction
+        documentType:
+          type: string
+          description: Type of document (e.g., eBoL, SWB)
+          enum:
+            - eBoL
+            - SWB
+        shipperDetails:
+          type: object
+          description: Details of the shipper
+        consigneeDetails:
+          type: object
+          description: Details of the consignee
+        cargoDetails:
+          type: object
+          description: Details of the cargo
+    DraftResponse:
+      type: object
+      properties:
+        draftId:
+          type: string
+          description: The unique identifier for the draft
+        status:
+          type: string
+          description: Status of the draft
+        transactionId:
+          type: string
+          description: The associated transaction identifier
+    IssueRequest:
+      type: object
+      properties:
+        draftId:
+          type: string
+          description: The identifier of the approved draft to issue
+        transactionId:
+          type: string
+          description: The unique identifier for the transaction
+    IssueResponse:
+      type: object
+      properties:
+        documentId:
+          type: string
+          description: The unique identifier for the issued document
+        status:
+          type: string
+          description: Status of the issued document
+        issuedAt:
+          type: string
+          format: date-time
+          description: Timestamp when the document was issued
+    ReIssueRequest:
+      type: object
+      properties:
+        documentId:
+          type: string
+          description: The identifier of the document to re-issue
+        reason:
+          type: string
+          description: Reason for re-issuance
+    ReIssueResponse:
+      type: object
+      properties:
+        documentId:
+          type: string
+          description: The identifier of the re-issued document
+        status:
+          type: string
+          description: Status of the re-issued document
+    SurrenderRequest:
+      type: object
+      properties:
+        documentId:
+          type: string
+          description: The identifier of the document being surrendered
+        transactionId:
+          type: string
+          description: The unique identifier for the transaction
+    SurrenderResponse:
+      type: object
+      properties:
+        documentId:
+          type: string
+          description: The identifier of the surrendered document
+        status:
+          type: string
+          description: Status after surrender
+tags:
+  - name: Issuance
+    description: Endpoints for drafting, issuing, and re-issuing electronic bills of lading
+  - name: Surrender
+    description: Endpoints for receiving surrendered electronic bills of lading
