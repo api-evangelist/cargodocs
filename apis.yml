@@ -5,9 +5,9 @@ apis:
   - aid: cargodocs:partner-api
     name: CargoDocs Partner API
     tags:
+      - Bills of Lading
       - Shipping
       - Trade
-      - Bills of Lading
     humanURL: https://cargodocs-partner.readme.io/
     properties:
       - url: https://cargodocs-partner.readme.io/
@@ -30,9 +30,9 @@ apis:
   - aid: cargodocs:issuer-api
     name: CargoDocs Issuer API
     tags:
-      - Shipping
       - Bills of Lading
       - Issuance
+      - Shipping
     humanURL: https://cargodocs-issuer.readme.io/
     properties:
       - url: https://cargodocs-issuer.readme.io/
@@ -53,8 +53,8 @@ apis:
   - aid: cargodocs:customer-api
     name: CargoDocs Customer Data/Docs API
     tags:
-      - Shipping
       - Documents
+      - Shipping
       - Trade
     humanURL: https://cargodocs-customer.readme.io/
     properties:

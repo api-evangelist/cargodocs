@@ -159,9 +159,9 @@ components:
           type: string
           description: The name of the counterparty
 tags:
-  - name: Exchange
-    description: Partner Exchange API endpoints for customer and employee data
   - name: Common
     description: Common API endpoints shared across partner operations
   - name: Documents
     description: Document retrieval and management endpoints
+  - name: Exchange
+    description: Partner Exchange API endpoints for customer and employee data

@@ -243,9 +243,9 @@ components:
           format: date-time
           description: When the document was created
 tags:
+  - name: Documents
+    description: Endpoints for retrieving and downloading documents
   - name: Import
     description: Endpoints for importing shipment data to create documents
   - name: Transactions
     description: Endpoints for finding and managing transactions
-  - name: Documents
-    description: Endpoints for retrieving and downloading documents
