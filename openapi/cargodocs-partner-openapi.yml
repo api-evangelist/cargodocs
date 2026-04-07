@@ -28,7 +28,7 @@ paths:
   /exchange/customers:
     get:
       operationId: getPartnerCustomerIds
-      summary: Get Partner Customer Ids
+      summary: CargoDocs Get Partner Customer Ids
       description: >-
         Allows a Partner to collect the Customer IDs which they have permission
         to access in CargoDocs Exchange.
@@ -50,7 +50,7 @@ paths:
   /exchange/employees:
     get:
       operationId: getPartnerCustomerEmployeeIds
-      summary: Get Partner Customer Employee Ids
+      summary: CargoDocs Get Partner Customer Employee Ids
       description: >-
         Allows the Partner to collect the Employee IDs for parties to action a
         set of electronic documents and for auditing purposes.
@@ -72,7 +72,7 @@ paths:
   /common/counterparties:
     get:
       operationId: getCounterparties
-      summary: Get Counterparties
+      summary: CargoDocs Get Counterparties
       description: >-
         Allows a Partner to retrieve all available counterparties.
       tags:
@@ -93,7 +93,7 @@ paths:
   /exchange/documents/{documentId}/pdf:
     get:
       operationId: getSinglePdf
-      summary: Get Single PDF
+      summary: CargoDocs Get Single PDF
       description: >-
         Allows a customer to download a copy of documents within a set. If the
         customer holds the original eBoL, the partner can download a version of

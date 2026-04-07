@@ -27,7 +27,7 @@ paths:
   /common/import:
     post:
       operationId: importShipmentData
-      summary: Import Shipment Data
+      summary: CargoDocs Import Shipment Data
       description: >-
         Imports shipment data to create trade and shipping documents such as
         tanker, bulker, or barge bills of lading. Data can be imported from ERP
@@ -63,7 +63,7 @@ paths:
   /customer/transactions:
     get:
       operationId: findTransactions
-      summary: Find Transactions
+      summary: CargoDocs Find Transactions
       description: >-
         Finds and retrieves transactions based on search criteria and filters.
       tags:
@@ -103,7 +103,7 @@ paths:
   /customer/transactions/{transactionId}/documents:
     get:
       operationId: findDocuments
-      summary: Find Transaction Documents
+      summary: CargoDocs Find Transaction Documents
       description: >-
         Retrieves documents associated with a specific transaction.
       tags:
@@ -133,7 +133,7 @@ paths:
   /customer/documents/{documentId}/pdf:
     get:
       operationId: downloadDocumentPdf
-      summary: Download Document PDF
+      summary: CargoDocs Download Document PDF
       description: >-
         Downloads a PDF copy of a specific document within a transaction.
       tags:

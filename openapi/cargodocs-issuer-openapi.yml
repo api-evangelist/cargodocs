@@ -28,7 +28,7 @@ paths:
   /issuer/draft:
     post:
       operationId: createDraft
-      summary: Create Draft eBoL
+      summary: CargoDocs Create Draft eBoL
       description: >-
         Shares a draft electronic Bill of Lading (eBoL) or Sea Waybill (SWB)
         for approval by the shipper before signing and issuing.
@@ -56,7 +56,7 @@ paths:
   /issuer/issue:
     post:
       operationId: issueDocument
-      summary: Issue eBoL
+      summary: CargoDocs Issue eBoL
       description: >-
         Signs and issues the original electronic Bill of Lading (eBoL) or
         Sea Waybill (SWB) after the draft has been approved.
@@ -84,7 +84,7 @@ paths:
   /issuer/re-issue:
     post:
       operationId: reIssue
-      summary: Re-Issue eBoL
+      summary: CargoDocs Re-Issue eBoL
       description: >-
         Allows the issuer to re-issue an electronic Bill of Lading, for
         example after an amendment request or when managing splits of an eBoL.
@@ -112,7 +112,7 @@ paths:
   /issuer/surrender:
     post:
       operationId: receiveSurrender
-      summary: Receive Surrendered eBoL
+      summary: CargoDocs Receive Surrendered eBoL
       description: >-
         Receives the surrendered original electronic Bill of Lading from the
         holder, typically for cargo release at destination.
