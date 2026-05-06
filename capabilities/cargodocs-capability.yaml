@@ -1,0 +1,231 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: CargoDocs Customer Data/Docs API
+  description: The CargoDocs Customer Data/Docs API enables exporters to draft trade and shipping documents, including tanker,
+    bulker, or barge bills of lading from data imported from an ERP system, CTRM, TMS, WMS, etc. It also enables any party
+    using CargoDocs to download copy docs and data to automate various back-office steps.
+  tags:
+  - Cargodocs
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: cargodocs
+    baseUri: https://api-test.cargodocs.com/v3
+    description: CargoDocs Customer Data/Docs API HTTP API.
+    authentication:
+      type: bearer
+      token: '{{CARGODOCS_TOKEN}}'
+    resources:
+    - name: common-import
+      path: /common/import
+      operations:
+      - name: importshipmentdata
+        method: POST
+        description: CargoDocs Import Shipment Data
+        inputParameters:
+        - name: importRef
+          in: query
+          type: string
+          required: true
+          description: The import reference identifier (e.g., LNGBL559)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: customer-transactions
+      path: /customer/transactions
+      operations:
+      - name: findtransactions
+        method: GET
+        description: CargoDocs Find Transactions
+        inputParameters:
+        - name: status
+          in: query
+          type: string
+          description: Filter by transaction status
+        - name: page
+          in: query
+          type: integer
+          description: Page number for pagination
+        - name: pageSize
+          in: query
+          type: integer
+          description: Number of items per page
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: customer-transactions-transactionid-documents
+      path: /customer/transactions/{transactionId}/documents
+      operations:
+      - name: finddocuments
+        method: GET
+        description: CargoDocs Find Transaction Documents
+        inputParameters:
+        - name: transactionId
+          in: path
+          type: string
+          required: true
+          description: The unique identifier for the transaction
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: customer-documents-documentid-pdf
+      path: /customer/documents/{documentId}/pdf
+      operations:
+      - name: downloaddocumentpdf
+        method: GET
+        description: CargoDocs Download Document PDF
+        inputParameters:
+        - name: documentId
+          in: path
+          type: string
+          required: true
+          description: The unique identifier for the document
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: cargodocs-rest
+    description: REST adapter for CargoDocs Customer Data/Docs API.
+    resources:
+    - path: /common/import
+      name: importshipmentdata
+      operations:
+      - method: POST
+        name: importshipmentdata
+        description: CargoDocs Import Shipment Data
+        call: cargodocs.importshipmentdata
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /customer/transactions
+      name: findtransactions
+      operations:
+      - method: GET
+        name: findtransactions
+        description: CargoDocs Find Transactions
+        call: cargodocs.findtransactions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /customer/transactions/{transactionId}/documents
+      name: finddocuments
+      operations:
+      - method: GET
+        name: finddocuments
+        description: CargoDocs Find Transaction Documents
+        call: cargodocs.finddocuments
+        with:
+          transactionId: rest.transactionId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /customer/documents/{documentId}/pdf
+      name: downloaddocumentpdf
+      operations:
+      - method: GET
+        name: downloaddocumentpdf
+        description: CargoDocs Download Document PDF
+        call: cargodocs.downloaddocumentpdf
+        with:
+          documentId: rest.documentId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: cargodocs-mcp
+    transport: http
+    description: MCP adapter for CargoDocs Customer Data/Docs API for AI agent use.
+    tools:
+    - name: importshipmentdata
+      description: CargoDocs Import Shipment Data
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cargodocs.importshipmentdata
+      with:
+        importRef: tools.importRef
+      inputParameters:
+      - name: importRef
+        type: string
+        description: The import reference identifier (e.g., LNGBL559)
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: findtransactions
+      description: CargoDocs Find Transactions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cargodocs.findtransactions
+      with:
+        status: tools.status
+        page: tools.page
+        pageSize: tools.pageSize
+      inputParameters:
+      - name: status
+        type: string
+        description: Filter by transaction status
+      - name: page
+        type: integer
+        description: Page number for pagination
+      - name: pageSize
+        type: integer
+        description: Number of items per page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: finddocuments
+      description: CargoDocs Find Transaction Documents
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cargodocs.finddocuments
+      with:
+        transactionId: tools.transactionId
+      inputParameters:
+      - name: transactionId
+        type: string
+        description: The unique identifier for the transaction
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: downloaddocumentpdf
+      description: CargoDocs Download Document PDF
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cargodocs.downloaddocumentpdf
+      with:
+        documentId: tools.documentId
+      inputParameters:
+      - name: documentId
+        type: string
+        description: The unique identifier for the document
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+binds:
+- namespace: env
+  keys:
+    CARGODOCS_TOKEN: CARGODOCS_TOKEN
