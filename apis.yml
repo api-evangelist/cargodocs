@@ -17,7 +17,7 @@ description: >-
   (carrier/NVOCC issuance and amendments), and the Customer Data/Docs
   API (exporter drafting and back-office integration).
 type: Index
-x-type: company
+kind: company
 position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
@@ -168,9 +168,9 @@ common:
     url: https://www.essdocs.com/blog
   - type: Contact
     url: https://www.essdocs.com/contact
-  - type: Terms of Service
+  - type: TermsOfService
     url: https://www.essdocs.com/terms
-  - type: Privacy Policy
+  - type: PrivacyPolicy
     url: https://www.essdocs.com/privacy
   - type: LinkedIn
     url: https://www.linkedin.com/company/essdocs
