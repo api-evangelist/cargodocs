@@ -1,0 +1,122 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: CargoDocs Customer Data/Docs API — Documents
+  description: 'CargoDocs Customer Data/Docs API — Documents. 2 operations. Lead operation: CargoDocs Download Document PDF.
+    Self-contained Naftiko capability covering one Cargodocs business surface.'
+  tags:
+  - Cargodocs
+  - Documents
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CARGODOCS_API_KEY: CARGODOCS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: customer-documents
+    baseUri: https://api-test.cargodocs.com/v3
+    description: CargoDocs Customer Data/Docs API — Documents business capability. Self-contained, no shared references.
+    resources:
+    - name: customer-documents-documentId-pdf
+      path: /customer/documents/{documentId}/pdf
+      operations:
+      - name: downloaddocumentpdf
+        method: GET
+        description: CargoDocs Download Document PDF
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: documentId
+          in: path
+          type: string
+          description: The unique identifier for the document
+          required: true
+    - name: customer-transactions-transactionId-documents
+      path: /customer/transactions/{transactionId}/documents
+      operations:
+      - name: finddocuments
+        method: GET
+        description: CargoDocs Find Transaction Documents
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: transactionId
+          in: path
+          type: string
+          description: The unique identifier for the transaction
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.CARGODOCS_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: customer-documents-rest
+    port: 8080
+    description: REST adapter for CargoDocs Customer Data/Docs API — Documents. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/customer/documents/{documentid}/pdf
+      name: customer-documents-documentid-pdf
+      description: REST surface for customer-documents-documentId-pdf.
+      operations:
+      - method: GET
+        name: downloaddocumentpdf
+        description: CargoDocs Download Document PDF
+        call: customer-documents.downloaddocumentpdf
+        with:
+          documentId: rest.documentId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/customer/transactions/{transactionid}/documents
+      name: customer-transactions-transactionid-documents
+      description: REST surface for customer-transactions-transactionId-documents.
+      operations:
+      - method: GET
+        name: finddocuments
+        description: CargoDocs Find Transaction Documents
+        call: customer-documents.finddocuments
+        with:
+          transactionId: rest.transactionId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: customer-documents-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for CargoDocs Customer Data/Docs API — Documents. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: cargodocs-download-document-pdf
+      description: CargoDocs Download Document PDF
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: customer-documents.downloaddocumentpdf
+      with:
+        documentId: tools.documentId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: cargodocs-find-transaction-documents
+      description: CargoDocs Find Transaction Documents
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: customer-documents.finddocuments
+      with:
+        transactionId: tools.transactionId
+      outputParameters:
+      - type: object
+        mapping: $.

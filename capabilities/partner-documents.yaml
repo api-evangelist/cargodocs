@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: CargoDocs Partner API — Documents
+  description: 'CargoDocs Partner API — Documents. 1 operations. Lead operation: CargoDocs Get Single PDF. Self-contained
+    Naftiko capability covering one Cargodocs business surface.'
+  tags:
+  - Cargodocs
+  - Documents
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CARGODOCS_API_KEY: CARGODOCS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: partner-documents
+    baseUri: https://api-test.cargodocs.com/v3
+    description: CargoDocs Partner API — Documents business capability. Self-contained, no shared references.
+    resources:
+    - name: exchange-documents-documentId-pdf
+      path: /exchange/documents/{documentId}/pdf
+      operations:
+      - name: getsinglepdf
+        method: GET
+        description: CargoDocs Get Single PDF
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: documentId
+          in: path
+          type: string
+          description: The unique identifier for the document
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.CARGODOCS_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: partner-documents-rest
+    port: 8080
+    description: REST adapter for CargoDocs Partner API — Documents. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/exchange/documents/{documentid}/pdf
+      name: exchange-documents-documentid-pdf
+      description: REST surface for exchange-documents-documentId-pdf.
+      operations:
+      - method: GET
+        name: getsinglepdf
+        description: CargoDocs Get Single PDF
+        call: partner-documents.getsinglepdf
+        with:
+          documentId: rest.documentId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: partner-documents-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for CargoDocs Partner API — Documents. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: cargodocs-get-single-pdf
+      description: CargoDocs Get Single PDF
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: partner-documents.getsinglepdf
+      with:
+        documentId: tools.documentId
+      outputParameters:
+      - type: object
+        mapping: $.

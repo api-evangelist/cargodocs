@@ -1,0 +1,91 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: CargoDocs Customer Data/Docs API — Transactions
+  description: 'CargoDocs Customer Data/Docs API — Transactions. 1 operations. Lead operation: CargoDocs Find Transactions.
+    Self-contained Naftiko capability covering one Cargodocs business surface.'
+  tags:
+  - Cargodocs
+  - Transactions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CARGODOCS_API_KEY: CARGODOCS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: customer-transactions
+    baseUri: https://api-test.cargodocs.com/v3
+    description: CargoDocs Customer Data/Docs API — Transactions business capability. Self-contained, no shared references.
+    resources:
+    - name: customer-transactions
+      path: /customer/transactions
+      operations:
+      - name: findtransactions
+        method: GET
+        description: CargoDocs Find Transactions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: status
+          in: query
+          type: string
+          description: Filter by transaction status
+        - name: page
+          in: query
+          type: integer
+          description: Page number for pagination
+        - name: pageSize
+          in: query
+          type: integer
+          description: Number of items per page
+    authentication:
+      type: bearer
+      token: '{{env.CARGODOCS_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: customer-transactions-rest
+    port: 8080
+    description: REST adapter for CargoDocs Customer Data/Docs API — Transactions. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/customer/transactions
+      name: customer-transactions
+      description: REST surface for customer-transactions.
+      operations:
+      - method: GET
+        name: findtransactions
+        description: CargoDocs Find Transactions
+        call: customer-transactions.findtransactions
+        with:
+          status: rest.status
+          page: rest.page
+          pageSize: rest.pageSize
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: customer-transactions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for CargoDocs Customer Data/Docs API — Transactions. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: cargodocs-find-transactions
+      description: CargoDocs Find Transactions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: customer-transactions.findtransactions
+      with:
+        status: tools.status
+        page: tools.page
+        pageSize: tools.pageSize
+      outputParameters:
+      - type: object
+        mapping: $.
