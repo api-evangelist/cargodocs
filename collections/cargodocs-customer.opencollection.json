@@ -1,0 +1,132 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CargoDocs Customer Data/Docs API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Import",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CargoDocs Import Shipment Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-test.cargodocs.com/v3/common/import",
+            "params": [
+              {
+                "name": "importRef",
+                "value": "",
+                "type": "query",
+                "description": "The import reference identifier (e.g., LNGBL559)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Imports shipment data to create trade and shipping documents such as tanker, bulker, or barge bills of lading. Data can be imported from ERP systems, CTRM, TMS, WMS, and other sources."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Transactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CargoDocs Find Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-test.cargodocs.com/v3/customer/transactions",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by transaction status"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              }
+            ]
+          },
+          "docs": "Finds and retrieves transactions based on search criteria and filters."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CargoDocs Find Transaction Documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-test.cargodocs.com/v3/customer/transactions/:transactionId/documents",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the transaction"
+              }
+            ]
+          },
+          "docs": "Retrieves documents associated with a specific transaction."
+        },
+        {
+          "info": {
+            "name": "CargoDocs Download Document PDF",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-test.cargodocs.com/v3/customer/documents/:documentId/pdf",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the document"
+              }
+            ]
+          },
+          "docs": "Downloads a PDF copy of a specific document within a transaction."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

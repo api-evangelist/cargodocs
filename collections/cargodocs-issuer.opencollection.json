@@ -1,0 +1,92 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CargoDocs Issuer API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Issuance",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CargoDocs Create Draft eBoL",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-test.cargodocs.com/v3/issuer/draft",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Shares a draft electronic Bill of Lading (eBoL) or Sea Waybill (SWB) for approval by the shipper before signing and issuing."
+        },
+        {
+          "info": {
+            "name": "CargoDocs Issue eBoL",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-test.cargodocs.com/v3/issuer/issue",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Signs and issues the original electronic Bill of Lading (eBoL) or Sea Waybill (SWB) after the draft has been approved."
+        },
+        {
+          "info": {
+            "name": "CargoDocs Re-Issue eBoL",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-test.cargodocs.com/v3/issuer/re-issue",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Allows the issuer to re-issue an electronic Bill of Lading, for example after an amendment request or when managing splits of an eBoL."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Surrender",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CargoDocs Receive Surrendered eBoL",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-test.cargodocs.com/v3/issuer/surrender",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Receives the surrendered original electronic Bill of Lading from the holder, typically for cargo release at destination."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,92 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CargoDocs Partner API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Exchange",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CargoDocs Get Partner Customer Ids",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-test.cargodocs.com/v3/exchange/customers"
+          },
+          "docs": "Allows a Partner to collect the Customer IDs which they have permission to access in CargoDocs Exchange."
+        },
+        {
+          "info": {
+            "name": "CargoDocs Get Partner Customer Employee Ids",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-test.cargodocs.com/v3/exchange/employees"
+          },
+          "docs": "Allows the Partner to collect the Employee IDs for parties to action a set of electronic documents and for auditing purposes."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Common",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CargoDocs Get Counterparties",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-test.cargodocs.com/v3/common/counterparties"
+          },
+          "docs": "Allows a Partner to retrieve all available counterparties."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CargoDocs Get Single PDF",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-test.cargodocs.com/v3/exchange/documents/:documentId/pdf",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the document"
+              }
+            ]
+          },
+          "docs": "Allows a customer to download a copy of documents within a set. If the customer holds the original eBoL, the partner can download a version of the BoL watermarked Original in CargoDocs."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
