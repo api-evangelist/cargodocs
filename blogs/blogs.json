@@ -3,13 +3,12 @@
   "feeds": [
     {
       "source": "https://www.essdocs.com/blog",
-      "error": "HTTPError"
-    },
-    {
-      "source": "https://cargodocs-customer.readme.io/",
-      "error": "HTTPError"
+      "feed_url": "",
+      "saved": 0,
+      "method": "agent-scrape"
     }
   ],
+  "fetched": "2026-06-27T12:31:00Z",
   "post_count": 13,
-  "fetched": "2026-06-14T20:42:17Z"
+  "agent_pulled": "2026-06-27"
 }
