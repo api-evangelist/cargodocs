@@ -135,6 +135,10 @@ apis:
       - Back-office reconciliation of shipping documents
       - Data feeds into trade finance and invoicing systems
 common:
+  - type: DomainSecurity
+    url: security/cargodocs-domain-security.yml
+  - type: Authentication
+    url: authentication/cargodocs-authentication.yml
   - type: Website
     url: https://www.essdocs.com/
   - type: Product
