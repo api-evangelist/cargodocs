@@ -2,13 +2,13 @@
   "repo": "cargodocs",
   "feeds": [
     {
-      "source": "https://www.essdocs.com/blog",
-      "feed_url": "",
+      "source": "https://cargodocs-customer.readme.io/",
+      "feed_url": "https://cargodocs-customer.readme.io/",
+      "title": "",
       "saved": 0,
-      "method": "agent-scrape"
+      "method": "none"
     }
   ],
-  "fetched": "2026-06-27T12:31:00Z",
-  "post_count": 13,
-  "agent_pulled": "2026-06-27"
+  "fetched": "2026-07-11T11:50:51Z",
+  "post_count": 13
 }
