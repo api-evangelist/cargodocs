@@ -135,6 +135,8 @@ apis:
       - Back-office reconciliation of shipping documents
       - Data feeds into trade finance and invoicing systems
 common:
+  - type: AgenticAccess
+    url: agentic-access/cargodocs-agentic-access.yml
   - type: DomainSecurity
     url: security/cargodocs-domain-security.yml
   - type: Authentication
