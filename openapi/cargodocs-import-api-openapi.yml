@@ -1,0 +1,92 @@
+openapi: 3.1.0
+info:
+  title: CargoDocs Customer Data/Docs Common Import API
+  description: The CargoDocs Customer Data/Docs API enables exporters to draft trade and shipping documents, including tanker, bulker, or barge bills of lading from data imported from an ERP system, CTRM, TMS, WMS, etc. It also enables any party using CargoDocs to download copy docs and data to automate various back-office steps.
+  version: 3.0.0
+  contact:
+    name: ICE Digital Trade (essDOCS)
+    url: https://www.essdocs.com
+  license:
+    name: Proprietary
+    url: https://www.essdocs.com
+servers:
+- url: https://api-test.cargodocs.com/v3
+  description: Sandbox / Test Environment
+- url: https://api.uat.cargodocs.com/v3
+  description: UAT Environment
+- url: https://api.cargodocs.com/v3
+  description: Production Environment
+security:
+- bearerAuth: []
+tags:
+- name: Import
+  description: Endpoints for importing shipment data to create documents
+paths:
+  /common/import:
+    post:
+      operationId: importShipmentData
+      summary: CargoDocs Import Shipment Data
+      description: Imports shipment data to create trade and shipping documents such as tanker, bulker, or barge bills of lading. Data can be imported from ERP systems, CTRM, TMS, WMS, and other sources.
+      tags:
+      - Import
+      parameters:
+      - name: importRef
+        in: query
+        required: true
+        description: The import reference identifier (e.g., LNGBL559)
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportRequest'
+      responses:
+        '200':
+          description: Shipment data imported successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+components:
+  schemas:
+    ImportResponse:
+      type: object
+      properties:
+        importId:
+          type: string
+          description: The unique identifier for the import operation
+        status:
+          type: string
+          description: Status of the import
+        transactionId:
+          type: string
+          description: The transaction ID created from the import
+    ImportRequest:
+      type: object
+      properties:
+        shipmentType:
+          type: string
+          description: Type of shipment (e.g., tanker, bulker, barge)
+          enum:
+          - tanker
+          - bulker
+          - barge
+        shipmentData:
+          type: object
+          description: The shipment data payload to import
+        documentType:
+          type: string
+          description: Type of document to create from the import
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

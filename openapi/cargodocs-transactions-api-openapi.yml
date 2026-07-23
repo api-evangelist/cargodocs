@@ -1,0 +1,102 @@
+openapi: 3.1.0
+info:
+  title: CargoDocs Customer Data/Docs Common Transactions API
+  description: The CargoDocs Customer Data/Docs API enables exporters to draft trade and shipping documents, including tanker, bulker, or barge bills of lading from data imported from an ERP system, CTRM, TMS, WMS, etc. It also enables any party using CargoDocs to download copy docs and data to automate various back-office steps.
+  version: 3.0.0
+  contact:
+    name: ICE Digital Trade (essDOCS)
+    url: https://www.essdocs.com
+  license:
+    name: Proprietary
+    url: https://www.essdocs.com
+servers:
+- url: https://api-test.cargodocs.com/v3
+  description: Sandbox / Test Environment
+- url: https://api.uat.cargodocs.com/v3
+  description: UAT Environment
+- url: https://api.cargodocs.com/v3
+  description: Production Environment
+security:
+- bearerAuth: []
+tags:
+- name: Transactions
+  description: Endpoints for finding and managing transactions
+paths:
+  /customer/transactions:
+    get:
+      operationId: findTransactions
+      summary: CargoDocs Find Transactions
+      description: Finds and retrieves transactions based on search criteria and filters.
+      tags:
+      - Transactions
+      parameters:
+      - name: status
+        in: query
+        required: false
+        description: Filter by transaction status
+        schema:
+          type: string
+      - name: page
+        in: query
+        required: false
+        description: Page number for pagination
+        schema:
+          type: integer
+          default: 1
+      - name: pageSize
+        in: query
+        required: false
+        description: Number of items per page
+        schema:
+          type: integer
+          default: 20
+      responses:
+        '200':
+          description: Successful response with list of transactions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionList'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+components:
+  schemas:
+    TransactionList:
+      type: object
+      properties:
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
+        totalCount:
+          type: integer
+          description: Total number of matching transactions
+        page:
+          type: integer
+          description: Current page number
+        pageSize:
+          type: integer
+          description: Number of items per page
+    Transaction:
+      type: object
+      properties:
+        transactionId:
+          type: string
+          description: The unique identifier for the transaction
+        status:
+          type: string
+          description: Current status of the transaction
+        createdAt:
+          type: string
+          format: date-time
+          description: When the transaction was created
+        documentCount:
+          type: integer
+          description: Number of documents in this transaction
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

@@ -1,0 +1,132 @@
+openapi: 3.1.0
+info:
+  title: CargoDocs Customer Data/Docs Common Documents API
+  description: The CargoDocs Customer Data/Docs API enables exporters to draft trade and shipping documents, including tanker, bulker, or barge bills of lading from data imported from an ERP system, CTRM, TMS, WMS, etc. It also enables any party using CargoDocs to download copy docs and data to automate various back-office steps.
+  version: 3.0.0
+  contact:
+    name: ICE Digital Trade (essDOCS)
+    url: https://www.essdocs.com
+  license:
+    name: Proprietary
+    url: https://www.essdocs.com
+servers:
+- url: https://api-test.cargodocs.com/v3
+  description: Sandbox / Test Environment
+- url: https://api.uat.cargodocs.com/v3
+  description: UAT Environment
+- url: https://api.cargodocs.com/v3
+  description: Production Environment
+security:
+- bearerAuth: []
+tags:
+- name: Documents
+  description: Endpoints for retrieving and downloading documents
+paths:
+  /customer/transactions/{transactionId}/documents:
+    get:
+      operationId: findDocuments
+      summary: CargoDocs Find Transaction Documents
+      description: Retrieves documents associated with a specific transaction.
+      tags:
+      - Documents
+      parameters:
+      - name: transactionId
+        in: path
+        required: true
+        description: The unique identifier for the transaction
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response with list of documents
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Document'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Transaction not found
+  /customer/documents/{documentId}/pdf:
+    get:
+      operationId: downloadDocumentPdf
+      summary: CargoDocs Download Document PDF
+      description: Downloads a PDF copy of a specific document within a transaction.
+      tags:
+      - Documents
+      parameters:
+      - name: documentId
+        in: path
+        required: true
+        description: The unique identifier for the document
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response with PDF document
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Document not found
+  /exchange/documents/{documentId}/pdf:
+    get:
+      operationId: getSinglePdf
+      summary: CargoDocs Get Single PDF
+      description: Allows a customer to download a copy of documents within a set. If the customer holds the original eBoL, the partner can download a version of the BoL watermarked Original in CargoDocs.
+      tags:
+      - Documents
+      parameters:
+      - name: documentId
+        in: path
+        required: true
+        description: The unique identifier for the document
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response with PDF document
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Document not found
+components:
+  schemas:
+    Document:
+      type: object
+      properties:
+        documentId:
+          type: string
+          description: The unique identifier for the document
+        documentType:
+          type: string
+          description: Type of document
+        status:
+          type: string
+          description: Current status of the document
+        createdAt:
+          type: string
+          format: date-time
+          description: When the document was created
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

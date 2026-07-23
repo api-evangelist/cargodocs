@@ -1,0 +1,75 @@
+openapi: 3.1.0
+info:
+  title: CargoDocs Customer Data/Docs Common Surrender API
+  description: The CargoDocs Customer Data/Docs API enables exporters to draft trade and shipping documents, including tanker, bulker, or barge bills of lading from data imported from an ERP system, CTRM, TMS, WMS, etc. It also enables any party using CargoDocs to download copy docs and data to automate various back-office steps.
+  version: 3.0.0
+  contact:
+    name: ICE Digital Trade (essDOCS)
+    url: https://www.essdocs.com
+  license:
+    name: Proprietary
+    url: https://www.essdocs.com
+servers:
+- url: https://api-test.cargodocs.com/v3
+  description: Sandbox / Test Environment
+- url: https://api.uat.cargodocs.com/v3
+  description: UAT Environment
+- url: https://api.cargodocs.com/v3
+  description: Production Environment
+security:
+- bearerAuth: []
+tags:
+- name: Surrender
+  description: Endpoints for receiving surrendered electronic bills of lading
+paths:
+  /issuer/surrender:
+    post:
+      operationId: receiveSurrender
+      summary: CargoDocs Receive Surrendered eBoL
+      description: Receives the surrendered original electronic Bill of Lading from the holder, typically for cargo release at destination.
+      tags:
+      - Surrender
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SurrenderRequest'
+      responses:
+        '200':
+          description: Surrender received successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SurrenderResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+components:
+  schemas:
+    SurrenderResponse:
+      type: object
+      properties:
+        documentId:
+          type: string
+          description: The identifier of the surrendered document
+        status:
+          type: string
+          description: Status after surrender
+    SurrenderRequest:
+      type: object
+      properties:
+        documentId:
+          type: string
+          description: The identifier of the document being surrendered
+        transactionId:
+          type: string
+          description: The unique identifier for the transaction
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
