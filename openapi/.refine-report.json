@@ -1,0 +1,26 @@
+{
+  "provider": "cargodocs",
+  "sources": [
+    "cargodocs-common-api-openapi.yml",
+    "cargodocs-documents-api-openapi.yml",
+    "cargodocs-exchange-api-openapi.yml",
+    "cargodocs-import-api-openapi.yml",
+    "cargodocs-issuance-api-openapi.yml",
+    "cargodocs-surrender-api-openapi.yml",
+    "cargodocs-transactions-api-openapi.yml"
+  ],
+  "outputs": [
+    "cargodocs-common-api-openapi.yml",
+    "cargodocs-documents-api-openapi.yml",
+    "cargodocs-exchange-api-openapi.yml",
+    "cargodocs-import-api-openapi.yml",
+    "cargodocs-issuance-api-openapi.yml",
+    "cargodocs-surrender-api-openapi.yml",
+    "cargodocs-transactions-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
