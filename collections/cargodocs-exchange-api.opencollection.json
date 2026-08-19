@@ -1,0 +1,46 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CargoDocs Customer Data/Docs Common Exchange API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Exchange",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CargoDocs Get Partner Customer Ids",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-test.cargodocs.com/v3/exchange/customers"
+          },
+          "docs": "Allows a Partner to collect the Customer IDs which they have permission to access in CargoDocs Exchange."
+        },
+        {
+          "info": {
+            "name": "CargoDocs Get Partner Customer Employee Ids",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-test.cargodocs.com/v3/exchange/employees"
+          },
+          "docs": "Allows the Partner to collect the Employee IDs for parties to action a set of electronic documents and for auditing purposes."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

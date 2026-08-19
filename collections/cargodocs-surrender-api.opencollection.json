@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CargoDocs Customer Data/Docs Common Surrender API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Surrender",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CargoDocs Receive Surrendered eBoL",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-test.cargodocs.com/v3/issuer/surrender",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Receives the surrendered original electronic Bill of Lading from the holder, typically for cargo release at destination."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

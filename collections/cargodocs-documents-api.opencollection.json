@@ -1,0 +1,81 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CargoDocs Customer Data/Docs Common Documents API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CargoDocs Find Transaction Documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-test.cargodocs.com/v3/customer/transactions/:transactionId/documents",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the transaction"
+              }
+            ]
+          },
+          "docs": "Retrieves documents associated with a specific transaction."
+        },
+        {
+          "info": {
+            "name": "CargoDocs Download Document PDF",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-test.cargodocs.com/v3/customer/documents/:documentId/pdf",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the document"
+              }
+            ]
+          },
+          "docs": "Downloads a PDF copy of a specific document within a transaction."
+        },
+        {
+          "info": {
+            "name": "CargoDocs Get Single PDF",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-test.cargodocs.com/v3/exchange/documents/:documentId/pdf",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the document"
+              }
+            ]
+          },
+          "docs": "Allows a customer to download a copy of documents within a set. If the customer holds the original eBoL, the partner can download a version of the BoL watermarked Original in CargoDocs."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
