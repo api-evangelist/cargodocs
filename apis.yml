@@ -31,6 +31,17 @@ image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/cargodocs.
 tags:
   - Bills of Lading
   - Documentation
+  - eBOL
+  - EssDocs
+  - MLETR
+  - Shipping
+  - Supply Chain
+  - Trade
+  - Trade Finance
+  - Warehouse Warrants
+tags_raw:
+  - Bills of Lading
+  - Documentation
   - eBoL
   - EssDocs
   - MLETR
@@ -229,6 +240,8 @@ apis:
   humanURL: https://cargodocs-partner.readme.io/
   baseURL: https://api.essdocs.com
   tags:
+  - Transaction
+  tags_raw:
   - Transactions
   properties:
   - type: OpenAPI
