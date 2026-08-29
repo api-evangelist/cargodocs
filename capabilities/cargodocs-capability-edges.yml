@@ -1,0 +1,47 @@
+slug: cargodocs
+provider: CargoDocs
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Transportation & Logistics
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: Issuance
+  spec_file: cargodocs-issuance-api-openapi.yml
+  capability_id: BC-2500.10
+  capability_id_l1: BC-2500
+  capability_name: Bill of Lading Management
+  confidence: 0.92
+  evidence: POST /issuer/draft 'CargoDocs Create Draft eBoL'; POST /issuer/issue 'CargoDocs Issue eBoL';
+    POST /issuer/re-issue 'CargoDocs Re-Issue eBoL'
+  reason: Operations explicitly draft, issue and re-issue electronic bills of lading, which is precisely
+    bill of lading issuance and lifecycle management.
+- tag: Surrender
+  spec_file: cargodocs-surrender-api-openapi.yml
+  capability_id: BC-2500.10
+  capability_id_l1: BC-2500
+  capability_name: Bill of Lading Management
+  confidence: 0.9
+  evidence: POST /issuer/surrender receiveSurrender 'CargoDocs Receive Surrendered eBoL'; schemas SurrenderRequest,
+    SurrenderResponse
+  reason: Receipt of a surrendered electronic bill of lading is the surrender step of the bill of lading
+    lifecycle explicitly named in the candidate capability.
+- tag: Documents
+  spec_file: cargodocs-documents-api-openapi.yml
+  capability_id: BC-2500.50
+  capability_id_l1: BC-2500
+  capability_name: Electronic Documentation Management
+  confidence: 0.75
+  evidence: GET /customer/transactions/{transactionId}/documents findDocuments 'CargoDocs Find Transaction
+    Documents'; GET /customer/documents/{documentId}/pdf 'CargoDocs Download Document PDF'
+  reason: Retrieval and download of trade/shipping documents held on an electronic transport-document
+    platform (eBL, sea waybill, warehouse warrant). This is cargo documentation lifecycle, specifically
+    the electronic documentation platform; slight ambiguity as it could be scoped under bill-of-lading
+    management.

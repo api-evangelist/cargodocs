@@ -279,6 +279,9 @@ apis:
   - type: JSONSchema
     url: json-schema/cargodocs-document.json
 common:
+  - type: CapabilityMap
+    url: capabilities/cargodocs-capability-edges.yml
+    name: CargoDocs Business Capability Map
   - type: AgenticAccess
     url: agentic-access/cargodocs-agentic-access.yml
   - type: DomainSecurity
