@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: CargoDocs Customer Data/Docs Common API
-  description: The CargoDocs Customer Data/Docs API enables exporters to draft trade and shipping documents, including tanker, bulker, or barge bills of lading from data imported from an ERP system, CTRM, TMS, WMS, etc. It also enables any party using CargoDocs to download copy docs and data to automate various back-office steps.
+  title: CargoDocs Partner Common API
+  description: The CargoDocs Partner API enables partners and platform providers to embed CargoDocs DocEx functionality into their trade or trade finance platforms, handling original electronic bills of lading (eBoL) and warehouse warrants (eWW). The Partner Exchange API retrieves customer and partner data to perform specific actions, with endpoints to retrieve data based on conditions and filters and Action endpoints to action over transactions.
   version: 3.0.0
   contact:
     name: ICE Digital Trade (essDOCS)

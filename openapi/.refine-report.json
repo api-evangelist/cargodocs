@@ -1,26 +1,37 @@
 {
   "provider": "cargodocs",
   "sources": [
-    "cargodocs-common-api-openapi.yml",
-    "cargodocs-documents-api-openapi.yml",
-    "cargodocs-exchange-api-openapi.yml",
-    "cargodocs-import-api-openapi.yml",
-    "cargodocs-issuance-api-openapi.yml",
-    "cargodocs-surrender-api-openapi.yml",
-    "cargodocs-transactions-api-openapi.yml"
+    "_original/cargodocs-customer-openapi.yml",
+    "_original/cargodocs-issuer-openapi.yml",
+    "_original/cargodocs-partner-openapi.yml"
   ],
   "outputs": [
-    "cargodocs-common-api-openapi.yml",
     "cargodocs-documents-api-openapi.yml",
-    "cargodocs-exchange-api-openapi.yml",
     "cargodocs-import-api-openapi.yml",
+    "cargodocs-transactions-api-openapi.yml",
     "cargodocs-issuance-api-openapi.yml",
     "cargodocs-surrender-api-openapi.yml",
-    "cargodocs-transactions-api-openapi.yml"
+    "cargodocs-common-api-openapi.yml",
+    "cargodocs-exchange-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (3 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "cargodocs-customer-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "cargodocs-issuer-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "cargodocs-partner-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "tag 'Documents' spans 2 source specs (cargodocs-customer-openapi.yml, cargodocs-partner-openapi.yml): per-path servers applied",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "cargodocs-common-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cargodocs-documents-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cargodocs-exchange-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cargodocs-import-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cargodocs-issuance-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cargodocs-surrender-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cargodocs-transactions-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

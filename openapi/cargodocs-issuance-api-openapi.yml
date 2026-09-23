@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: CargoDocs Customer Data/Docs Common Issuance API
-  description: The CargoDocs Customer Data/Docs API enables exporters to draft trade and shipping documents, including tanker, bulker, or barge bills of lading from data imported from an ERP system, CTRM, TMS, WMS, etc. It also enables any party using CargoDocs to download copy docs and data to automate various back-office steps.
+  title: CargoDocs Issuer Issuance API
+  description: The CargoDocs Issuer API enables container lines or NVOCCs to manage relevant tasks relating to electronic straight and negotiable bills of lading at Origin or Destination from within their TMS. The API supports sharing draft eBoL/SWB for shipper approval, signing and issuing original eBoL/SWB, receiving surrendered original electronic bills of lading, and managing Amendment Requests or Splits of an eBoL.
   version: 3.0.0
   contact:
     name: ICE Digital Trade (essDOCS)
@@ -123,15 +123,18 @@ components:
         cargoDetails:
           type: object
           description: Details of the cargo
-    IssueRequest:
+    DraftResponse:
       type: object
       properties:
         draftId:
           type: string
-          description: The identifier of the approved draft to issue
+          description: The unique identifier for the draft
+        status:
+          type: string
+          description: Status of the draft
         transactionId:
           type: string
-          description: The unique identifier for the transaction
+          description: The associated transaction identifier
     ReIssueResponse:
       type: object
       properties:
@@ -154,6 +157,15 @@ components:
           type: string
           format: date-time
           description: Timestamp when the document was issued
+    IssueRequest:
+      type: object
+      properties:
+        draftId:
+          type: string
+          description: The identifier of the approved draft to issue
+        transactionId:
+          type: string
+          description: The unique identifier for the transaction
     ReIssueRequest:
       type: object
       properties:
@@ -163,18 +175,6 @@ components:
         reason:
           type: string
           description: Reason for re-issuance
-    DraftResponse:
-      type: object
-      properties:
-        draftId:
-          type: string
-          description: The unique identifier for the draft
-        status:
-          type: string
-          description: Status of the draft
-        transactionId:
-          type: string
-          description: The associated transaction identifier
   securitySchemes:
     bearerAuth:
       type: http
