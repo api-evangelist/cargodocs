@@ -57,18 +57,6 @@ paths:
           description: Forbidden
 components:
   schemas:
-    ImportResponse:
-      type: object
-      properties:
-        importId:
-          type: string
-          description: The unique identifier for the import operation
-        status:
-          type: string
-          description: Status of the import
-        transactionId:
-          type: string
-          description: The transaction ID created from the import
     ImportRequest:
       type: object
       properties:
@@ -85,6 +73,18 @@ components:
         documentType:
           type: string
           description: Type of document to create from the import
+    ImportResponse:
+      type: object
+      properties:
+        importId:
+          type: string
+          description: The unique identifier for the import operation
+        status:
+          type: string
+          description: Status of the import
+        transactionId:
+          type: string
+          description: The transaction ID created from the import
   securitySchemes:
     bearerAuth:
       type: http

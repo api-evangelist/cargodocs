@@ -64,6 +64,15 @@ paths:
           description: Forbidden
 components:
   schemas:
+    Customer:
+      type: object
+      properties:
+        customerId:
+          type: string
+          description: The unique identifier for the customer
+        customerName:
+          type: string
+          description: The name of the customer
     Employee:
       type: object
       properties:
@@ -76,15 +85,6 @@ components:
         customerId:
           type: string
           description: The customer ID associated with this employee
-    Customer:
-      type: object
-      properties:
-        customerId:
-          type: string
-          description: The unique identifier for the customer
-        customerName:
-          type: string
-          description: The name of the customer
   securitySchemes:
     bearerAuth:
       type: http

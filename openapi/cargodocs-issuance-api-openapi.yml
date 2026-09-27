@@ -102,6 +102,18 @@ paths:
           description: Forbidden
 components:
   schemas:
+    DraftResponse:
+      type: object
+      properties:
+        draftId:
+          type: string
+          description: The unique identifier for the draft
+        status:
+          type: string
+          description: Status of the draft
+        transactionId:
+          type: string
+          description: The associated transaction identifier
     DraftRequest:
       type: object
       properties:
@@ -123,27 +135,6 @@ components:
         cargoDetails:
           type: object
           description: Details of the cargo
-    DraftResponse:
-      type: object
-      properties:
-        draftId:
-          type: string
-          description: The unique identifier for the draft
-        status:
-          type: string
-          description: Status of the draft
-        transactionId:
-          type: string
-          description: The associated transaction identifier
-    ReIssueResponse:
-      type: object
-      properties:
-        documentId:
-          type: string
-          description: The identifier of the re-issued document
-        status:
-          type: string
-          description: Status of the re-issued document
     IssueResponse:
       type: object
       properties:
@@ -166,6 +157,15 @@ components:
         transactionId:
           type: string
           description: The unique identifier for the transaction
+    ReIssueResponse:
+      type: object
+      properties:
+        documentId:
+          type: string
+          description: The identifier of the re-issued document
+        status:
+          type: string
+          description: Status of the re-issued document
     ReIssueRequest:
       type: object
       properties:
