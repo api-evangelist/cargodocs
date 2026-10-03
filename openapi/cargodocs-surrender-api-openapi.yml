@@ -50,15 +50,6 @@ paths:
           description: Forbidden
 components:
   schemas:
-    SurrenderResponse:
-      type: object
-      properties:
-        documentId:
-          type: string
-          description: The identifier of the surrendered document
-        status:
-          type: string
-          description: Status after surrender
     SurrenderRequest:
       type: object
       properties:
@@ -68,6 +59,15 @@ components:
         transactionId:
           type: string
           description: The unique identifier for the transaction
+    SurrenderResponse:
+      type: object
+      properties:
+        documentId:
+          type: string
+          description: The identifier of the surrendered document
+        status:
+          type: string
+          description: Status after surrender
   securitySchemes:
     bearerAuth:
       type: http

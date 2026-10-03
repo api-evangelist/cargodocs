@@ -63,22 +63,6 @@ paths:
           description: Forbidden
 components:
   schemas:
-    Transaction:
-      type: object
-      properties:
-        transactionId:
-          type: string
-          description: The unique identifier for the transaction
-        status:
-          type: string
-          description: Current status of the transaction
-        createdAt:
-          type: string
-          format: date-time
-          description: When the transaction was created
-        documentCount:
-          type: integer
-          description: Number of documents in this transaction
     TransactionList:
       type: object
       properties:
@@ -95,6 +79,22 @@ components:
         pageSize:
           type: integer
           description: Number of items per page
+    Transaction:
+      type: object
+      properties:
+        transactionId:
+          type: string
+          description: The unique identifier for the transaction
+        status:
+          type: string
+          description: Current status of the transaction
+        createdAt:
+          type: string
+          format: date-time
+          description: When the transaction was created
+        documentCount:
+          type: integer
+          description: Number of documents in this transaction
   securitySchemes:
     bearerAuth:
       type: http
