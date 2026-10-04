@@ -43,7 +43,6 @@ access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/cargodocs.png
 tags:
   - Bills of Lading
-  - Documentation
   - eBoL
   - EssDocs
   - MLETR
@@ -54,7 +53,6 @@ tags:
   - Warehouse Warrants
 tags_raw:
   - Bills of Lading
-  - Documentation
   - eBoL
   - EssDocs
   - MLETR
@@ -316,3 +314,5 @@ common:
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-tags-removed:
+- Documentation
