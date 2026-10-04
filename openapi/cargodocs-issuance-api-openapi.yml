@@ -102,58 +102,6 @@ paths:
           description: Forbidden
 components:
   schemas:
-    ReIssueRequest:
-      type: object
-      properties:
-        documentId:
-          type: string
-          description: The identifier of the document to re-issue
-        reason:
-          type: string
-          description: Reason for re-issuance
-    IssueResponse:
-      type: object
-      properties:
-        documentId:
-          type: string
-          description: The unique identifier for the issued document
-        status:
-          type: string
-          description: Status of the issued document
-        issuedAt:
-          type: string
-          format: date-time
-          description: Timestamp when the document was issued
-    ReIssueResponse:
-      type: object
-      properties:
-        documentId:
-          type: string
-          description: The identifier of the re-issued document
-        status:
-          type: string
-          description: Status of the re-issued document
-    DraftResponse:
-      type: object
-      properties:
-        draftId:
-          type: string
-          description: The unique identifier for the draft
-        status:
-          type: string
-          description: Status of the draft
-        transactionId:
-          type: string
-          description: The associated transaction identifier
-    IssueRequest:
-      type: object
-      properties:
-        draftId:
-          type: string
-          description: The identifier of the approved draft to issue
-        transactionId:
-          type: string
-          description: The unique identifier for the transaction
     DraftRequest:
       type: object
       properties:
@@ -175,6 +123,58 @@ components:
         cargoDetails:
           type: object
           description: Details of the cargo
+    ReIssueResponse:
+      type: object
+      properties:
+        documentId:
+          type: string
+          description: The identifier of the re-issued document
+        status:
+          type: string
+          description: Status of the re-issued document
+    IssueResponse:
+      type: object
+      properties:
+        documentId:
+          type: string
+          description: The unique identifier for the issued document
+        status:
+          type: string
+          description: Status of the issued document
+        issuedAt:
+          type: string
+          format: date-time
+          description: Timestamp when the document was issued
+    IssueRequest:
+      type: object
+      properties:
+        draftId:
+          type: string
+          description: The identifier of the approved draft to issue
+        transactionId:
+          type: string
+          description: The unique identifier for the transaction
+    ReIssueRequest:
+      type: object
+      properties:
+        documentId:
+          type: string
+          description: The identifier of the document to re-issue
+        reason:
+          type: string
+          description: Reason for re-issuance
+    DraftResponse:
+      type: object
+      properties:
+        draftId:
+          type: string
+          description: The unique identifier for the draft
+        status:
+          type: string
+          description: Status of the draft
+        transactionId:
+          type: string
+          description: The associated transaction identifier
   securitySchemes:
     bearerAuth:
       type: http
