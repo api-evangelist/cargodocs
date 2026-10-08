@@ -278,6 +278,12 @@ apis:
   - type: JSONSchema
     url: json-schema/cargodocs-document.json
 common:
+  - type: Plans
+    url: plans/cargodocs-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/cargodocs-rate-limits.yml
+  - type: FinOps
+    url: finops/cargodocs-finops.yml
   - type: CapabilityMap
     url: capabilities/cargodocs-capability-edges.yml
     name: CargoDocs Business Capability Map
