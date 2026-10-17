@@ -145,24 +145,6 @@ components:
           type: string
           format: date-time
           description: Timestamp when the document was issued
-    IssueRequest:
-      type: object
-      properties:
-        draftId:
-          type: string
-          description: The identifier of the approved draft to issue
-        transactionId:
-          type: string
-          description: The unique identifier for the transaction
-    ReIssueRequest:
-      type: object
-      properties:
-        documentId:
-          type: string
-          description: The identifier of the document to re-issue
-        reason:
-          type: string
-          description: Reason for re-issuance
     DraftResponse:
       type: object
       properties:
@@ -175,6 +157,24 @@ components:
         transactionId:
           type: string
           description: The associated transaction identifier
+    ReIssueRequest:
+      type: object
+      properties:
+        documentId:
+          type: string
+          description: The identifier of the document to re-issue
+        reason:
+          type: string
+          description: Reason for re-issuance
+    IssueRequest:
+      type: object
+      properties:
+        draftId:
+          type: string
+          description: The identifier of the approved draft to issue
+        transactionId:
+          type: string
+          description: The unique identifier for the transaction
   securitySchemes:
     bearerAuth:
       type: http
