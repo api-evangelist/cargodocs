@@ -1,4 +1,4 @@
-# CargoDocs (cargodocs)
+# CargoDocs
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,116 +66,152 @@
 
 CargoDocs, operated by EssDocs, is a digital trade documentation platform that eliminates paper-based shipping documents by letting carriers, shippers, banks, and partner platforms issue, sign, transfer, and surrender original electronic bills of lading (eBoL), sea waybills (SWB), warehouse warrants (eWW), and supporting trade documents. CargoDocs DocEx is used by container lines, NVOCCs, bulk/tanker carriers, commodity shippers, and trade finance banks to move documents in minutes rather than days while retaining negotiability and legal effect. Developers interact with CargoDocs through three OpenAPI-described REST APIs hosted on ReadMe - the Partner API (embed DocEx in third-party platforms), the Issuer API (carrier/NVOCC issuance and amendments), and the Customer Data/Docs API (exporter drafting and back-office integration).
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/cargodocs/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/cargodocs/refs/heads/main/apis.yml)
+**Areas:** Bills of Lading · eBoL · EssDocs · MLETR · Shipping · Supply Chain · Trade · Trade Finance · Warehouse Warrants
 
-## Scope
+## CargoDocs on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for CargoDocs is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/cargodocs/](https://apis.io/providers/cargodocs/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (7)
 
-- Bills of Lading
-- Documentation
-- eBoL
-- EssDocs
-- MLETR
-- Shipping
-- Supply Chain
-- Trade
-- Trade Finance
-- Warehouse Warrants
+- [CargoDocs Common API](https://apis.io/apis/cargodocs/cargodocs-common-api/) — Common API endpoints shared across partner operations
+- [CargoDocs Documents API](https://apis.io/apis/cargodocs/cargodocs-documents-api/) — Endpoints for retrieving and downloading documents
+- [CargoDocs Exchange API](https://apis.io/apis/cargodocs/cargodocs-exchange-api/) — Partner Exchange API endpoints for customer and employee data
+- [CargoDocs Import API](https://apis.io/apis/cargodocs/cargodocs-import-api/) — Endpoints for importing shipment data to create documents
+- [CargoDocs Issuance API](https://apis.io/apis/cargodocs/cargodocs-issuance-api/) — Endpoints for drafting, issuing, and re-issuing electronic bills of lading
+- [CargoDocs Surrender API](https://apis.io/apis/cargodocs/cargodocs-surrender-api/) — Endpoints for receiving surrendered electronic bills of lading
+- [CargoDocs Transactions API](https://apis.io/apis/cargodocs/cargodocs-transactions-api/) — Endpoints for finding and managing transactions
 
-## Timestamps
+### Published properties
 
-- **Created:** 2025-01-08
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### CargoDocs Partner API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The CargoDocs Partner API enables platform providers and trade finance/trade management platforms to embed CargoDocs DocEx functionality, including original electronic bills of lading (eBoL) and warehouse warrants (eWW). The API exposes Partner Exchange endpoints to retrieve customer, counterparty, document, and transaction data using conditions and filters, and Action endpoints to perform operations over transactions such as signing, transferring, and surrendering documents.
+- [Cargodocs Agentic Access](https://apis.io/agentic-access/cargodocs/cargodocs-agentic-access/)
 
-- **Human URL:** [https://cargodocs-partner.readme.io/](https://cargodocs-partner.readme.io/)
-- **Base URL:** `https://api.essdocs.com`
+#### JSON Schema (5)
 
-#### Tags
+The data models the API reads and writes.
 
-- Bills of Lading
-- Shipping
-- Trade
+- [CargoDocs Bill of Lading](https://apis.io/schemas/cargodocs/cargodocs-bill-of-lading/)
+- [CargoDocs Counterparty](https://apis.io/schemas/cargodocs/cargodocs-counterparty/)
+- [CargoDocs Customer](https://apis.io/schemas/cargodocs/cargodocs-customer/)
+- [CargoDocs Document](https://apis.io/schemas/cargodocs/cargodocs-document/)
+- [CargoDocs Transaction](https://apis.io/schemas/cargodocs/cargodocs-transaction/)
 
-#### Properties
+#### JSON-LD (1)
 
-- [Documentation](https://cargodocs-partner.readme.io/)
-- [Getting Started](https://cargodocs-partner.readme.io/docs/api-environments)
-- [OpenAPI](openapi/cargodocs-partner-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/cargodocs-partner.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/cargodocs-partner.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/cargodocs-customer.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/cargodocs-counterparty.json) — [JSON Schema](https://json-schema.org/specification)
+Linked-data contexts for the provider's vocabulary.
 
-### CargoDocs Issuer API
+- [Cargodocs Context](https://apis.io/jsonld/cargodocs/cargodocs-context/)
 
-The CargoDocs Issuer API enables container lines, NVOCCs, and bulk/tanker carriers to manage electronic straight and negotiable bills of lading and sea waybills at origin or destination from within their TMS. It supports sharing draft eBoL/SWB for shipper approval, signing and issuing original eBoL/SWB, receiving surrendered original electronic bills of lading, and managing amendment requests or splits of an eBoL.
+#### Collections (10)
 
-- **Human URL:** [https://cargodocs-issuer.readme.io/](https://cargodocs-issuer.readme.io/)
-- **Base URL:** `https://api.essdocs.com`
+Postman and Open Collection request collections.
 
-#### Tags
+- [CargoDocs Customer Data/Docs Common API](https://apis.io/collections/cargodocs/open-cargodocs-common-api/)
+- [CargoDocs Customer Data/Docs API](https://apis.io/collections/cargodocs/open-cargodocs-customer/)
+- [CargoDocs Customer Data/Docs Common Documents API](https://apis.io/collections/cargodocs/open-cargodocs-documents-api/)
+- [CargoDocs Customer Data/Docs Common Exchange API](https://apis.io/collections/cargodocs/open-cargodocs-exchange-api/)
+- [CargoDocs Customer Data/Docs Common Import API](https://apis.io/collections/cargodocs/open-cargodocs-import-api/)
+- [CargoDocs Customer Data/Docs Common Issuance API](https://apis.io/collections/cargodocs/open-cargodocs-issuance-api/)
+- [CargoDocs Issuer API](https://apis.io/collections/cargodocs/open-cargodocs-issuer/)
+- [CargoDocs Partner API](https://apis.io/collections/cargodocs/open-cargodocs-partner/)
+- [CargoDocs Customer Data/Docs Common Surrender API](https://apis.io/collections/cargodocs/open-cargodocs-surrender-api/)
+- [CargoDocs Customer Data/Docs Common Transactions API](https://apis.io/collections/cargodocs/open-cargodocs-transactions-api/)
 
-- Bills of Lading
-- Issuance
-- Shipping
+#### Governance rules (1)
 
-#### Properties
+Spectral rulesets for the provider's contracts.
 
-- [Documentation](https://cargodocs-issuer.readme.io/)
-- [Getting Started](https://cargodocs-issuer.readme.io/docs/first-api-call)
-- [OpenAPI](openapi/cargodocs-issuer-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/cargodocs-issuer.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/cargodocs-issuer.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/cargodocs-bill-of-lading.json) — [JSON Schema](https://json-schema.org/specification)
+- [CargoDocs — jsonschema rules](https://apis.io/rules/cargodocs/cargodocs-jsonschema-spectral-rules/)
 
-### CargoDocs Customer Data/Docs API
+#### Security (2)
 
-The CargoDocs Customer Data/Docs API enables exporters and commodity shippers to draft trade and shipping documents, including tanker, bulker, or barge bills of lading, from data imported out of ERP, CTRM, TMS, or WMS systems. It also enables any party using CargoDocs to download copy documents and structured transaction data to automate back-office steps such as invoicing, reconciliation, and reporting.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://cargodocs-customer.readme.io/](https://cargodocs-customer.readme.io/)
-- **Base URL:** `https://api.essdocs.com`
+- [Cargodocs Authentication](https://apis.io/security/cargodocs/cargodocs-authentication/)
+- [Cargodocs Domain Security](https://apis.io/security/cargodocs/cargodocs-domain-security/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- Documents
-- Shipping
-- Trade
+Published plans, tiers and prices.
 
-#### Properties
+- [Cargodocs Plans Pricing](https://apis.io/plans/cargodocs/cargodocs-plans-pricing/)
 
-- [Documentation](https://cargodocs-customer.readme.io/)
-- [OpenAPI](openapi/cargodocs-customer-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/cargodocs-customer.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/cargodocs-customer.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/cargodocs-transaction.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/cargodocs-document.json) — [JSON Schema](https://json-schema.org/specification)
+#### Rate limits (1)
 
-## Common Properties
+Published request limits.
+
+- [Cargodocs Rate Limits](https://apis.io/rate-limits/cargodocs/cargodocs-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Cargodocs Finops](https://apis.io/finops/cargodocs/cargodocs-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.essdocs.com/)
-- [Product](https://www.essdocs.com/cargodocs)
-- [J S O N L D Context](json-ld/cargodocs-context.jsonld)
-- [Partner  Docs](https://cargodocs-partner.readme.io/)
-- [Issuer  Docs](https://cargodocs-issuer.readme.io/)
-- [Customer  Docs](https://cargodocs-customer.readme.io/)
 - [Blog](https://www.essdocs.com/blog)
-- [Contact](https://www.essdocs.com/contact)
-- [Terms of Service](https://www.essdocs.com/terms)
-- [Privacy Policy](https://www.essdocs.com/privacy)
-- [LinkedIn](https://www.linkedin.com/company/essdocs)
+- [Terms of service](https://www.essdocs.com/terms)
+- [Privacy policy](https://www.essdocs.com/privacy)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 29.9** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 71.4 |
+| Contract quality | 61.2 |
+| Contract governance | 9.8 |
+| Operational transparency | 5.3 |
+| Developer ergonomics | 25.0 |
+| Access clarity | 5.3 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/cargodocs/](https://apis.io/providers/cargodocs/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for CargoDocs: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/cargodocs/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
